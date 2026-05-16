@@ -32,3 +32,19 @@ function waitForElement(selector, parentNode = document) {
     });
   });
 }
+
+
+// 1. 全てのCookieを取得してオブジェクトに変換する関数
+function getCookieList() {
+    const cookies = {};
+    if (document.cookie === "") return cookies;
+
+    // セミコロンとスペースで分割してループ処理
+    document.cookie.split('; ').forEach(cookie => {
+        const [key, value] = cookie.split('=');
+        // デコードしてオブジェクトに格納
+        cookies[decodeURIComponent(key)] = decodeURIComponent(value);
+    });
+
+    return cookies;
+}
